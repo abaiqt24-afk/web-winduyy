@@ -1,0 +1,94 @@
+
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>For My Girl - Winduy</title>
+    <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <audio id="mySong" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>Haii Cantik..</h2>
+            <input type="text" id="username" placeholder="Username" autocomplete="off">
+            <input type="password" id="password" placeholder="Password">
+            <button class="btn-login" onclick="checkLogin()">MASUK ♥</button>
+        </div>
+    </div>
+
+    <nav id="floating-nav">
+        <button class="nav-button active" id="btn-home" onclick="showPage('home')">Home</button>
+        <button class="nav-button" id="btn-about" onclick="showPage('about')">About</button>
+    </nav>
+
+    <div id="home-page" class="page">
+        <h2 class="section-title">Hal-hal yang Membuat Aku Mencintaimu..</h2>
+        
+        <div class="message-box">
+            <b>TEMPAT PULANG</b>
+            <p>Sejujurnya, ngejelasin kenapa aku bisa sayang sedalam ini itu susah susah gampang, Sayang. Tapi intinya, sama kamu itu aku bisa nemuin ketenangan yang nggak pernah aku dapet di orang lain. Mencintaimu itu bukan cuma soal perasaan, tapi soal bagaimana aku merasa 'pulang' setiap kali aku ngobrol sama kamu. Dunia luar mungkin berisik dan bikin capek, tapi di sampingmu, semuanya jadi terasa ringan dan tenang.</p>
+        </div>
+
+        <div class="message-box">
+            <b>PENERIMAAN TANPA SYARAT</b>
+            <p>Mungkin judul yang ini yang ini gabisa sepenuhnya iya. Tapi menurut aku BISAAA BANGETTTT karena kamu kaya nerima aku apa adanya gitu loh, contohnya aku tuh orangnya bisa jadi manja banget, bahkan mungkin kelewat clingy di momen momen tertentu. Dulu aku takut orang bakal risi, tapi pas sama kamu, semuanya beda. Cara kamu nanggepin sifat manja aku dengan tenang, tanpa ada rasa kesal sedikit pun, itu yang bikin aku langsung sadar: wah, ini dia cewek yang selama ini aku cari-cari. Makasih ya udah mau nerima segala kurangnya aku.</p>
+        </div>
+    </div>
+
+    <div id="about-page" class="page">
+        <h2 class="section-title">The One Who Stole My Heart</h2>
+        <div class="photo-grid">
+            <div class="photo-item"><img src="dia1.jpg" alt="Foto 1"></div>
+            <div class="photo-item"><img src="dia2.jpg" alt="Foto 2"></div>
+        </div>
+        <div class="message-box">
+            <p style="text-align: center; color: #5C3D3D; font-weight: bold;">A little story about her..</p>
+            <p style="margin-top: 15px;">Ini dia, my love, the most beautiful gurl in the world, kadang ngambek, kadang cheerfull, kadang gampang nangis (kebanyakan ngambeknya sih AHAHAHHA). Web sederhana ini sengaja aku buat cuma buat ngingetin kamu, kalau kamu itu spesial banget di hidup aku. Terima kasih ya udah jadi sosok yang luar biasa dan melengkapi hari-hari aku. Aku cuma pengen kamu selalu bahagia terus bareng aku. I lOVE YOU MORE THAN U KNOW, makasih ya udah jadi tempat pulang paling nyaman buat aku. Aku sayang kamu, WINDUYYYY✨</p>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+            var song = document.getElementById("mySong");
+
+            if (user === "winduy" && pass === "paok") {
+                document.getElementById("login-overlay").style.display = "none";
+                document.getElementById("floating-nav").style.display = "flex";
+                document.getElementById("music-control").style.display = "flex";
+                
+                // Muter lagu pas berhasil login
+                song.play().catch(e => console.log("Autoplay blocked, click play button."));
+                showPage('home'); 
+            } else {
+                alert("Salah Paok! Coba inget-inget lagi!");
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(pageId + '-page').style.display = 'block';
+
+            document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function toggleMusic() {
+            var song = document.getElementById("mySong");
+            var btn = document.getElementById("music-control");
+            if (song.paused) { song.play(); btn.innerText = "🎵"; } 
+            else { song.pause(); btn.innerText = "🔇"; }
+        }
+    </script>
+</body>
+</html>
